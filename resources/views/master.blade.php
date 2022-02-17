@@ -214,6 +214,41 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{url('dashboard') }}" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Organization Name</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('dashboard') }}" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Branch</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{url('dashboard') }}" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Designation</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('dashboard') }}" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Requesion Name</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('dashboard') }}" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Settings</p>
+                        </a>
+                    </li>
+
+
+
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
