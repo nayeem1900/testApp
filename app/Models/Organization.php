@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
-    use HasFactory;
+   use HasFactory;
     protected $table = 'organizations';
     protected $guarded = [];
+
+
+
 }
