@@ -17,17 +17,18 @@ class DepartmentFactory extends Factory
      */
     public function definition()
     {
-        $random = [0, 1];
+        $oRandom = [0, 1];
         $organizations = Organization::get('unique_id');
+        $bRandom = [0, 2999];
         $branches = Branch::get('unique_id');
         return [
             //
 
-            'unique_id' => $this->faker->unique()->randomNumber(8, false),
-            'organization_unique_id' =>$organizations[Arr::random($random)]->unique_id,
-            'branch_unique_id' =>$branches[Arr::random($random)]->unique_id,
+            'unique_id' => rand(1111111,9999999),
+            'organization_unique_id' =>$organizations[Arr::random($oRandom)]->unique_id,
+            'branch_unique_id' =>$branches[Arr::random($bRandom)]->unique_id,
             'name' => Str::random(10),
-            'status' => Arr::random($random),
+            'status' => Arr::random($oRandom),
             'description' => $this->faker->realText(200, 2),
             'created_by' => 1,
             'updated_by' => 1,

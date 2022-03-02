@@ -22,7 +22,7 @@ class BranchFactory extends Factory
 
         return [
             'organization_unique_id' => $organizations[Arr::random($random)]->unique_id,
-            'unique_id' => $this->faker->unique()->randomNumber(8, false), // 79907610 unique_id,
+            'unique_id' => rand(1111111,9999999), // 79907610 unique_id,
             'name' => $this->faker->streetName,
             'address' => $this->faker->streetAddress,
             'email' => $this->faker->unique()->safeEmail(),

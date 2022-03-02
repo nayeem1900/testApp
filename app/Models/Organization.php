@@ -11,6 +11,8 @@ class Organization extends Model
     protected $table = 'organizations';
     protected $guarded = [];
 
-
+    public function branches(){
+        return $this->hasMany(Branch::class, 'organization_unique_id', 'unique_id');
+    }
 
 }

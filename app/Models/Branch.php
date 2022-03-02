@@ -10,4 +10,8 @@ class Branch extends Model
     use HasFactory;
     protected $table = 'branches';
     protected $guarded = [];
+
+    public function organiztion(){
+        return $this->belongsTo(Organization::class, 'organization_unique_id', 'unique_id');
+    }
 }
