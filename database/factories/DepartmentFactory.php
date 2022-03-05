@@ -19,7 +19,7 @@ class DepartmentFactory extends Factory
     {
         $oRandom = [0, 1];
         $organizations = Organization::get('unique_id');
-        $bRandom = [0, 2999];
+        $bRandom = [0, 999];
         $branches = Branch::get('unique_id');
         return [
             //

@@ -25,6 +25,8 @@ class CreateRenameBranchUniquieIdDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments');
+        Schema::table('departments', function (Blueprint $table) {
+            $table->droopColumn('branch_unique_id');
+        });
     }
 }

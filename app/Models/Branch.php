@@ -14,4 +14,10 @@ class Branch extends Model
     public function organiztion(){
         return $this->belongsTo(Organization::class, 'organization_unique_id', 'unique_id');
     }
+    //Branch one to many
+    public function departments(){
+
+        return $this->hasMany(Department::class, 'branch_unique_id', 'unique_id');
+    }
+
 }
