@@ -20,6 +20,12 @@ Route::get('login', [LoginController::class, 'index'])->name('index');
 
 Route::post('login', [LoginController::class, 'login'])->name('login');
 
+Route::get('forget_password', [LoginController::class, 'forget'])->name('forget.password');
+Route::post('get_password', [LoginController::class, 'getMailSms'])->name('forget.get_mail_sms');
+
+Route::get('password_reset', [LoginController::class, 'resetPassword'])->name('reset.password');
+Route::post('update_password', [LoginController::class, 'passwordUpdate'])->name('update.password');
+
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
