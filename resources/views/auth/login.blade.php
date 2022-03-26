@@ -79,7 +79,7 @@
                 <a href="{{ route('forget.password') }}">I forgot my password</a>
             </p>
             <p class="mb-0">
-                <a href="register.html" class="text-center">Register a new membership</a>
+                <a href="{{route('userview')}}" class="text-center">Register a new membership</a>
             </p>
         </div>
 

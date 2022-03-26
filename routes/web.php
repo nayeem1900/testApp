@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RgestrationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +27,9 @@ Route::post('get_password', [LoginController::class, 'getMailSms'])->name('forge
 
 Route::get('password_reset', [LoginController::class, 'resetPassword'])->name('reset.password');
 Route::post('update_password', [LoginController::class, 'passwordUpdate'])->name('update.password');
-
-
+//Regestration
+Route::get('user-reg-view', [RgestrationController::class, 'userview'])->name('userview');
+Route::post('user-reg-store', [RgestrationController::class, 'userstore'])->name('userstore');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 

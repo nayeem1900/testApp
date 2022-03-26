@@ -101,6 +101,7 @@ class LoginController extends Controller
     }
 
      public function forget(){
+
          return view('auth.forget');
      }
 
