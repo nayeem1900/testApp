@@ -17,12 +17,12 @@ class RgestrationController extends Controller
 
 
         $user = new User();
-        $otp = rand(0000, 9999);
-        $user->otp = $otp;
+        $user->otp = UniqueIdController::otp();
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->role_id = 3;
         $user->password=Hash::make($request->password);
 
         $user->save();

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class MenuActivity extends Model
 {
     use HasFactory;
+
+
 }

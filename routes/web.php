@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RgestrationController;
+use App\Http\Controllers\PermissionController;
 
 
 /*
@@ -31,8 +32,8 @@ Route::post('update_password', [LoginController::class, 'passwordUpdate'])->name
 Route::get('user-reg-view', [RgestrationController::class, 'userview'])->name('userview');
 Route::post('user-reg-store', [RgestrationController::class, 'userstore'])->name('userstore');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-
-
+//Permission
+Route::get('permission-view', [PermissionController::class, 'permissionview'])->name('permissionview');
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('welcome');
 });

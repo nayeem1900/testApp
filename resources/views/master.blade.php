@@ -251,6 +251,12 @@
                             <p>Settings</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('permissionview')}}" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Permission</p>
+                        </a>
+                    </li>
 
 
 
