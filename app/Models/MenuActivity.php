@@ -9,5 +9,7 @@ class MenuActivity extends Model
 {
     use HasFactory;
 
+    protected $table = 'menu_actions';
+
 
 }

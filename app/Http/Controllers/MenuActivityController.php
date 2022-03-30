@@ -82,4 +82,17 @@ class MenuActivityController extends Controller
     {
         //
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\MenuActivity  $menuActivity
+     * @return \Illuminate\Http\Response
+     */
+    static public function actionCheck($menuId, $actionId){
+        
+        $check = MenuActivity::where('menu_id', $menuId)->where('action_id', $actionId)->count();
+        return $check;
+    }
 }
