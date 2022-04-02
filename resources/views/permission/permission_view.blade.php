@@ -26,7 +26,7 @@
                 <div class="row">
                     <!-- left column -->
                     <div class="col-md-12">
-                        <form method="" action="" role="form">
+                        <form method="post" action="" role="form">
                             @csrf
                         <!-- general form elements -->
                             <div class="card card-primary">
@@ -67,7 +67,7 @@
                                             <tr>
                                                 <td>{{++$key}}</td>
                                                 <td>
-                                                    {{$menu_act->name}} <input type="checkbox" name="menu[]" value="{{ $menu_act->id }}">
+                                                    {{$menu_act->name}} <input type="checkbox" name="menu_{{ $menu_act->id }}" value="{{ $menu_act->id }}">
                                                 </td>
                                                     @foreach ($actions as $action)
 
@@ -87,6 +87,14 @@
                                                 @endforeach
 
                                             </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="7" class="text-center">
+                                                        Already Exist User <input type="checkbox" name="exist_check" value="1">
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
                                         </table>
 
 
