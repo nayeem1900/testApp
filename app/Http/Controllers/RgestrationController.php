@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MenuToRole;
+use App\Models\MenuToUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,22 +18,39 @@ class RgestrationController extends Controller
     {
 
 
-        $user = new User();
-        $user->otp = UniqueIdController::otp();
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->role_id = 3;
-        $user->password=Hash::make($request->password);
+        
+        $user['otp'] = UniqueIdController::otp();
+        $user['name'] = $request->name;
+        $user['username'] = $request->username;
+        $user['email'] = $request->email;
+        $user['phone'] = $request->phone;
+        $user['role_id'] = 3;
+        $user['password'] = Hash::make($request->password);
 
-        $user->save();
-
-
+        $store = User::create($user);
+        
+        $this->permission($store);
         return redirect()->route('index')->with('success', 'Data Insert successfull');
 
-
     }
+
+
+    private static function permission($userData){
+        
+        $permissions = MenuToRole::where('role_id', $userData->role_id)->get();
+        $userTopermission['user_id'] = $userData->id;
+        foreach($permissions as $permission){
+            $userTopermission['menu_id'] = $permission->menu_id;
+            $userTopermission['action_id'] = $permission->action_id;
+
+            MenuToUser::create($userTopermission);
+
+            
+        }
+            
+        
+    } 
+
 
 
 }
