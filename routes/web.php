@@ -39,6 +39,10 @@ Route::middleware(['auth'])->group(function () {
     //Permission
     Route::get('permission-view', [PermissionController::class, 'permissionview'])->name('permissionview');
     Route::post('permission-view', [PermissionController::class, 'store'])->name('permissionview');
+
+    //user create
+
+
 });
 
 

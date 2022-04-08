@@ -223,6 +223,12 @@
                     <li class="nav-item">
                         <a href="{{url('dashboard') }}" class="nav-link active">
                             <i class="far fa-circle nav-icon"></i>
+                            <p>User registration</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('dashboard') }}" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
                             <p>Organization Name</p>
                         </a>
                     </li>
