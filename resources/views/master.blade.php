@@ -220,49 +220,85 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{url('dashboard') }}" class="nav-link active">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>User registration</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{url('dashboard') }}" class="nav-link active">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Organization Name</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{url('dashboard') }}" class="nav-link active">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Branch</p>
-                        </a>
-                    </li>
 
+                    @php 
+                        $access = App\Http\Controllers\PermissionAccess::menuAccess(6, 1); // 1. parameter for menuId, 2. Parameter for actionid like: View, Edit, Add, Delete
+                    @endphp
+                    @if($access)
+                        <li class="nav-item">
+                            <a href="{{url('dashboard') }}" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User registration</p>
+                            </a>
+                        </li>
+                    @endif
+                    @php 
+                        $access = App\Http\Controllers\PermissionAccess::menuAccess(1, 1); // 1. parameter for menuId, 2. Parameter for actionid like: View, Edit, Add, Delete
+                    @endphp
+                    @if($access)
+                        <li class="nav-item">
+                            <a href="{{url('dashboard') }}" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Organization Name</p>
+                            </a>
+                        </li>
+                    @endif
+                    @php 
+                        $access = App\Http\Controllers\PermissionAccess::menuAccess(2, 1); // 1. parameter for menuId, 2. Parameter for actionid like: View, Edit, Add, Delete
+                    @endphp
+                    @if($access)
+                        <li class="nav-item">
+                            <a href="{{url('dashboard') }}" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Branch</p>
+                            </a>
+                        </li>
+                    @endif
+                    @php 
+                        $access = App\Http\Controllers\PermissionAccess::menuAccess(3, 1); // 1. parameter for menuId, 2. Parameter for actionid like: View, Edit, Add, Delete
+                    @endphp
+                    @if($access)
                     <li class="nav-item">
                         <a href="{{url('dashboard') }}" class="nav-link active">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Designation</p>
                         </a>
                     </li>
+                    @endif
+                    @php 
+                        $access = App\Http\Controllers\PermissionAccess::menuAccess(4, 1); // 1. parameter for menuId, 2. Parameter for actionid like: View, Edit, Add, Delete
+                    @endphp
+                    @if($access)
                     <li class="nav-item">
                         <a href="{{url('dashboard') }}" class="nav-link active">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Requesion Name</p>
                         </a>
                     </li>
+                    @endif
+                    @php 
+                        $access = App\Http\Controllers\PermissionAccess::menuAccess(5, 1); // 1. parameter for menuId, 2. Parameter for actionid like: View, Edit, Add, Delete
+                    @endphp
+                    @if($access)
                     <li class="nav-item">
                         <a href="{{url('dashboard') }}" class="nav-link active">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Settings</p>
                         </a>
                     </li>
+                    @endif
+                    @php 
+                        $access = App\Http\Controllers\PermissionAccess::menuAccess(7, 1); // 1. parameter for menuId, 2. Parameter for actionid like: View, Edit, Add, Delete
+                    @endphp
+                    @if($access)
                     <li class="nav-item">
                         <a href="{{route('permissionview')}}" class="nav-link active">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Permission</p>
                         </a>
                     </li>
+                    @endif
+                   
 
 
 
