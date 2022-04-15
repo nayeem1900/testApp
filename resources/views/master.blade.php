@@ -248,7 +248,7 @@
                     @endphp
                     @if($access)
                         <li class="nav-item">
-                            <a href="{{url('dashboard') }}" class="nav-link active">
+                            <a href="{{url('branch') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Branch</p>
                             </a>

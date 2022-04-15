@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class BranchController extends Controller
 {
+
+    private $menuId = 2;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,12 @@ class BranchController extends Controller
      */
     public function index()
     {
-        //
+        if(!PermissionAccess::viewAccess($this->menuId, 1)){
+            return view('errors.419');
+        }
+
+        
+        return view('backend.branch.index');
     }
 
     /**
@@ -24,7 +31,9 @@ class BranchController extends Controller
      */
     public function create()
     {
-        //
+        if(!PermissionAccess::viewAccess($this->menuId, 2)){
+            return view('errors.419');
+        }
     }
 
     /**
@@ -35,7 +44,9 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!PermissionAccess::viewAccess($this->menuId, 2)){
+            return view('errors.419');
+        }
     }
 
     /**
@@ -46,7 +57,9 @@ class BranchController extends Controller
      */
     public function show(Branch $branch)
     {
-        //
+        if(!PermissionAccess::viewAccess($this->menuId, 1)){
+            return view('errors.419');
+        }
     }
 
     /**
@@ -57,7 +70,9 @@ class BranchController extends Controller
      */
     public function edit(Branch $branch)
     {
-        //
+        if(!PermissionAccess::viewAccess($this->menuId, 3)){
+            return view('errors.419');
+        }
     }
 
     /**
@@ -69,7 +84,9 @@ class BranchController extends Controller
      */
     public function update(Request $request, Branch $branch)
     {
-        //
+        if(!PermissionAccess::viewAccess($this->menuId, 3)){
+            return view('errors.419');
+        }
     }
 
     /**
@@ -80,6 +97,8 @@ class BranchController extends Controller
      */
     public function destroy(Branch $branch)
     {
-        //
+        if(!PermissionAccess::viewAccess($this->menuId, 4)){
+            return view('errors.419');
+        }
     }
 }

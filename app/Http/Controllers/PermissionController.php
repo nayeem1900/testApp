@@ -13,7 +13,14 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
+
+    private $menuId = 7;
+
     public function permissionview(){
+
+        if(!PermissionAccess::viewAccess($this->menuId, 1)){
+            return view('errors.419');
+        }
 
         $menu_activities = Menu::with('actions')->get();
         $actions = Action::get();
@@ -77,8 +84,6 @@ class PermissionController extends Controller
             }
         }
 
-        
-        
-        dd("hello");
+        return redirect()->back()->with(['msg' => 'Permission Update Succeesful']);
     }
 }

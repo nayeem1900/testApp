@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RgestrationController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\BranchController;
 
 
 /*
@@ -39,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     //Permission
     Route::get('permission-view', [PermissionController::class, 'permissionview'])->name('permissionview');
     Route::post('permission-view', [PermissionController::class, 'store'])->name('permissionview');
+    Route::get('branch', [BranchController::class, 'index'])->name('branch.list');
 
     //user create
 
