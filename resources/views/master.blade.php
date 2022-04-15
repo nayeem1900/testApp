@@ -226,7 +226,7 @@
                     @endphp
                     @if($access)
                         <li class="nav-item">
-                            <a href="{{url('dashboard') }}" class="nav-link active">
+                            <a href="{{route('subadminview')}}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>User registration</p>
                             </a>
@@ -298,7 +298,7 @@
                         </a>
                     </li>
                     @endif
-                   
+
 
 
 
@@ -340,6 +340,12 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('public/backend') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="{{asset('backend/admin_panel/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('backend/admin_panel/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('backend/admin_panel/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('backend/admin_panel/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+
 <!-- ChartJS -->
 <script src="{{asset('public/backend') }}/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -363,5 +369,23 @@
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('public/backend') }}/dist/js/pages/dashboard.js"></script>
+
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
 </body>
 </html>

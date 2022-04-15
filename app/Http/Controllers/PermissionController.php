@@ -77,8 +77,8 @@ class PermissionController extends Controller
             }
         }
 
+        return redirect()->route('permissionview');
         
-        
-       // dd("hello");
+        //dd("hello");
     }
 }

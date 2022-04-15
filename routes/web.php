@@ -38,11 +38,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('welcome');
     //Permission
     Route::get('permission-view', [PermissionController::class, 'permissionview'])->name('permissionview');
-    Route::post('permission-view', [PermissionController::class, 'store'])->name('permissionview');
+    Route::post('permission-view', [PermissionController::class, 'store'])->name('permissionstore');
 
     //user create
-
-
+    Route::get('sub-admin-user', [RgestrationController::class, 'subadminview'])->name('subadminview');
+    Route::post('sub-admin-add', [RgestrationController::class, 'subadminadd'])->name('subadminadd');
+    Route::post('sub-admin-store', [RgestrationController::class, 'subadminstore'])->name('subadminstore');
 });
 
 

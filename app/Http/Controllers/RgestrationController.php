@@ -18,7 +18,6 @@ class RgestrationController extends Controller
     {
 
 
-        
         $user['otp'] = UniqueIdController::otp();
         $user['name'] = $request->name;
         $user['username'] = $request->username;
@@ -50,6 +49,35 @@ class RgestrationController extends Controller
             
         
     } 
+
+
+
+    //SubAdmin User Create
+
+    public function subadminview(){
+
+
+        $data['allData']=User::all();
+
+
+        return view ('backend.reg-user.user_view',$data);
+
+
+    }
+//add
+
+
+    public function add(){
+
+
+
+        $data['allData']=User::all();
+
+
+        return view ('backend.reg-user.user_add',$data);
+        }
+
+
 
 
 
