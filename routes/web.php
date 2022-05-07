@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     //Permission
     Route::get('permission-view', [PermissionController::class, 'permissionview'])->name('permissionview');
     Route::post('permission-view', [PermissionController::class, 'store'])->name('permissionview');
+    Route::get('get_permission_check/{roleId}', [PermissionController::class, 'getPermission'])->name('getPermission');
     Route::get('branch', [BranchController::class, 'index'])->name('branch.list');
 
     //user create

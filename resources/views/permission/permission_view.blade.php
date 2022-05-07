@@ -34,7 +34,7 @@
                                     <h3  class="card-title">Permission</h3>
                                 </div>
                                 <div class="col text-right">
-                                    <select name="role_id" id="role_id">
+                                    <select name="role_id" id="role_id" class="role_id">
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                                         @endforeach
@@ -66,14 +66,14 @@
                                         <tr>
                                             <td>{{++$key}}</td>
                                             <td>
-                                                {{$menu_act->name}} <input type="checkbox" name="menu_{{ $menu_act->id }}" value="{{ $menu_act->id }}">
+                                                {{$menu_act->name}} <input data-menu_id="{{ $menu_act->id }}" class="menu_id menu_id_{{ $menu_act->id }}" type="checkbox" name="menu_{{ $menu_act->id }}" value="{{ $menu_act->id }}">
                                             </td>
                                                 @foreach ($actions as $action)
 
                                                 @php $check = App\Http\Controllers\MenuActivityController::actionCheck($menu_act->id, $action->id) @endphp
                                                     <td>
                                                         @if($check)
-                                                            <input type="checkbox" id="check_{{ $action->id }}" data-action_id="{{ $action->id }}" class="check check_{{ $action->id }}" name="action[{{ $menu_act->id }}][{{ $action->id }}]" value={{ $action->id }}>
+                                                            <input type="checkbox" id="check_{{ $action->id }}" data-menu_id="{{ $menu_act->id }}" data-action_id="{{ $action->id }}" class="check check_{{ $action->id }} menu_{{ $menu_act->id }} checked_{{ $menu_act->id }}_{{ $action->id }}" name="action[{{ $menu_act->id }}][{{ $action->id }}]" value={{ $action->id }}>
                                                         @else
                                                             <input type="checkbox" disabled>
                                                         @endif
@@ -124,13 +124,43 @@
 <script>
 
     $(document).ready(function(){
-        // $(document).on('click', '.all', function(){
-        //     if($('.all').is(':checked')){
-        //         $('input[type=checkbox]').attr('checked', true);
-        //     }else{
-        //         $('input[type=checkbox]').attr('checked', false);
-        //     }            
+        
+        $(document).on('click', '.all', function(){
+            console.log($('.all').is(':checked'));
+            if($('.all').is(':checked')){
+                $('input[type=checkbox]').prop('checked', true);
+            }else{
+                $('input[type=checkbox]').prop('checked', false);
+            }            
+        })
+
+        // Menu Id check unchecked function goes here
+
+        $(document).on('click', '.menu_id', function(){
+            var menuId = $(this).data("menu_id");
+            if($(this).prop('checked')){
+                $(".menu_"+menuId).prop("checked", true);
+            }else{
+                $(".menu_"+menuId).prop("checked", false);
+            }
+            
+        })
+
+
+        // $(document).on('click', '.check', function(){    
+        //     var menuId = $(this).data('menu_id');
+
+        //     console.log(menuId);
+
+        //     // if($(".menu_id"+$menuId).length == $(".menu"+$menuId+":checked").length) {
+        //     //     $(".menu_id_"+$menuId).prop("checked", true);
+        //     // } else {
+        //     //     $(".menu_id_"+$menuId).prop("checked", false);
+                
+        //     // }
         // })
+
+        
 
 
         $(document).on('click', '.allCheck', function(){
@@ -144,15 +174,32 @@
         })
 
         $(document).on('click', '.check', function(){    
-            $actionId = $(this).data('action_id');
+            var actionId = $(this).data('action_id');
+            var menuId = $(this).data('menu_id');
 
-            if($(".check_"+$actionId).length == $(".check_"+$actionId+":checked").length) {
-                $("#allCheck_"+$actionId).prop("checked", true);
+            if($(".menu_"+menuId).length == $(".menu_"+menuId+":checked").length) {
+                $(".menu_id_"+menuId).prop("checked", true);
             } else {
-                $("#allCheck_"+$actionId).prop("checked", false);
+                $(".menu_id_"+menuId).prop("checked", false);
                 
             }
+
+            if($(".check_"+actionId).length == $(".check_"+actionId+":checked").length) {
+                $("#allCheck_"+actionId).prop("checked", true);
+            } else {
+                $("#allCheck_"+actionId).prop("checked", false);
+                
+            }
+
+            
         })
+
+        // if all checkbox are selected, check the selectall checkbox
+        if($(".check_2").length == $(".check_2:checked").length) {
+            $(".allCheck_2").prop("checked", true);
+        } else {
+            $(".allCheck_2").prop("checked", false);
+        }
 
 
 
@@ -271,16 +318,48 @@
         // }
 
 
+    // role permission get by ajax check permission checked/unchecked
+
+    $(document).on('change', '.role_id', function(){
+        var roleId = $(this).val();
+
+        var url = "{{ url('get_permission_check') }}/"+roleId;
+
+        $.ajax({
+            method: "get",
+            url: url,
+            success: function(res){
+
+                $('input[type=checkbox]').prop('checked', false);
+
+                $.each(res, function(index, data){
+
+                    $('.checked_'+data.menu_id+'_'+data.action_id).prop('checked', true);
+
+                    if($(".check_"+data.action_id).length == $(".check_"+data.action_id+":checked").length) {
+                        $("#allCheck_"+data.action_id).prop("checked", true);
+                    } else {
+                        $("#allCheck_"+data.action_id).prop("checked", false);
+                        
+                    }
+
+                    if($('.checked_'+data.menu_id+'_'+data.action_id).length == $('.checked_'+data.menu_id+'_'+data.action_id+':checked').length) {
+                        $(".menu_id_"+data.menu_id).prop("checked", true);
+                    } else {
+                        $(".menu_id_"+data.menu_id).prop("checked", false);
+                        
+                    }
+
+                })
+                
+                console.table(res);
+            },
+            error: function(xhr){
+                console.log(xhr);
+            }
+        })
+    })
         
-
-
-        // if all checkbox are selected, check the selectall checkbox
-        if($(".check_2").length == $(".check_2:checked").length) {
-            console.log('hello');
-            $(".allCheck_2").prop("checked", true);
-        } else {
-            $(".allCheck_2").prop("checked", false);
-        }
     })
 
 </script>

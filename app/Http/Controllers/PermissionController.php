@@ -31,6 +31,27 @@ class PermissionController extends Controller
 
 
     /**
+     * check permission by role_id
+     * @method get
+     * perameter $role_id
+     * 
+     */
+
+    public function getPermission($roleId){
+
+        if(!PermissionAccess::viewAccess($this->menuId, 2)){
+            return view('errors.419');
+        }
+
+        $roleId = MenuToRole::where('role_id', $roleId)->get(['menu_id', 'role_id', 'action_id']);
+
+        return response()->json($roleId);
+
+
+    }
+
+
+    /**
      * permission store function
      * @method Post
      * $request
@@ -38,6 +59,10 @@ class PermissionController extends Controller
      */
 
     public function store(Request $request){
+
+        if(!PermissionAccess::viewAccess($this->menuId, 2)){
+            return view('errors.419');
+        }
 
         $permission['role_id'] = $request->role_id;
 
